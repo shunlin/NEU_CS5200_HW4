@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="MySQL - DB_HW4@localhost" uuid="8641bc77-8118-4614-92ef-9881a160f77c">
+    <database-info product="MySQL" version="5.6.21" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.34 ( Revision: jess.balint@oracle.com-20141014163213-wqbwpf1ok2kvo1om )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="mixed" quoted-identifiers="upper"/>
+    <schema name="" catalog="DB_HW4"/>
+    <table name="Actor" schema="" catalog="DB_HW4" type="TABLE">
+      <column name="actorId" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="firstName" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="lastName" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="dateOfBirth" sqlType="DATE" precision="10" scale="0" nullable="false" jdbcType="91"/>
+      <primary-key name="PRIMARY" columns="actorId"/>
+      <exported-key name="cast_ibfk_2" table="Cast" schema="" catalog="DB_HW4" columns="actorId"/>
+    </table>
+    <table name="Cast" schema="" catalog="DB_HW4" type="TABLE">
+      <column name="castId" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="characterName" sqlType="VARCHAR" precision="64" scale="0" nullable="false" jdbcType="12"/>
+      <column name="movieId" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="actorId" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="castId"/>
+      <foreign-key name="cast_ibfk_1" columns="movieId" ref-table="Movie" ref-schema="" ref-catalog="DB_HW4" ref-columns="movieId" update-rule="3" delete-rule="0" deferrability="2"/>
+      <foreign-key name="cast_ibfk_2" columns="actorId" ref-table="Actor" ref-schema="" ref-catalog="DB_HW4" ref-columns="actorId" update-rule="3" delete-rule="3" deferrability="2"/>
+    </table>
+    <table name="Comment" schema="" catalog="DB_HW4" type="TABLE">
+      <column name="commentId" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="comment" sqlType="TEXT" precision="65535" scale="0" nullable="false" jdbcType="-1"/>
+      <column name="date" sqlType="DATE" precision="10" scale="0" nullable="true" jdbcType="91"/>
+      <column name="username" sqlType="VARCHAR" precision="64" scale="0" nullable="false" jdbcType="12"/>
+      <column name="movieId" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="commentId"/>
+      <foreign-key name="comment_ibfk_1" columns="username" ref-table="User" ref-schema="" ref-catalog="DB_HW4" ref-columns="username" update-rule="3" delete-rule="0" deferrability="2"/>
+      <foreign-key name="comment_ibfk_2" columns="movieId" ref-table="Movie" ref-schema="" ref-catalog="DB_HW4" ref-columns="movieId" update-rule="3" delete-rule="0" deferrability="2"/>
+    </table>
+    <table name="Movie" schema="" catalog="DB_HW4" type="TABLE">
+      <column name="movieId" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="title" sqlType="VARCHAR" precision="64" scale="0" nullable="false" jdbcType="12"/>
+      <column name="posterImage" sqlType="VARCHAR" precision="128" scale="0" nullable="true" jdbcType="12"/>
+      <column name="releaseDate" sqlType="DATE" precision="10" scale="0" nullable="true" jdbcType="91"/>
+      <primary-key name="PRIMARY" columns="movieId"/>
+      <exported-key name="cast_ibfk_1" table="Cast" schema="" catalog="DB_HW4" columns="movieId"/>
+      <exported-key name="comment_ibfk_2" table="Comment" schema="" catalog="DB_HW4" columns="movieId"/>
+    </table>
+    <table name="User" schema="" catalog="DB_HW4" type="TABLE">
+      <column name="username" sqlType="VARCHAR" precision="64" scale="0" nullable="false" jdbcType="12"/>
+      <column name="password" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="firstName" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="lastName" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="email" sqlType="VARCHAR" precision="64" scale="0" nullable="false" jdbcType="12"/>
+      <column name="dateOfBirth" sqlType="DATE" precision="10" scale="0" nullable="false" jdbcType="91"/>
+      <primary-key name="PRIMARY" columns="username"/>
+      <exported-key name="comment_ibfk_1" table="Comment" schema="" catalog="DB_HW4" columns="username"/>
+    </table>
+  </data-source>
+</component>
